@@ -32,6 +32,10 @@ bin/
 
 run/
 
+# mod runtime config —— 可能包含 NapCat Access Token,不要提交
+/config/
+config/mc_qq_mod.json
+
 # java
 
 hs_err_*.log

@@ -2,33 +2,23 @@
 	"schemaVersion": 1,
 	"id": "mc_qq_mod",
 	"version": "${version}",
-	"name": "mc_qq_mod",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"name": "Minecraft QQ Bind",
+	"description": "通过 QQ 群绑定 Minecraft 玩家账号:未绑定 QQ 的玩家将被拒绝进入服务器。",
 	"authors": [
-		"Me!"
+		"HuZiL-1"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/HuZiL-1/Minecraft_QQ_Mod",
+		"sources": "https://github.com/HuZiL-1/Minecraft_QQ_Mod"
 	},
 	"license": "CC0-1.0",
 	"icon": "assets/mc_qq_mod/icon.png",
-	"environment": "*",
+	"environment": "server",
 	"entrypoints": {
 		"main": [
-			"mc_qq_mod.Mc_qq_mod"
-		],
-		"client": [
-			"mc_qq_mod.client.Mc_qq_modClient"
+			"top.huzile.mcqq.McQqMod"
 		]
 	},
-	"mixins": [
-		"mc_qq_mod.mixins.json",
-		{
-			"config": "mc_qq_mod.client.mixins.json",
-			"environment": "client"
-		}
-	],
 	"depends": {
 		"fabricloader": ">=0.19.5",
 		"minecraft": "~26.2",

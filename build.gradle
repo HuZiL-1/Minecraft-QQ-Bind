@@ -4,20 +4,13 @@ plugins {
 }
 
 repositories {
-	// Add repositories to retrieve artifacts from in here.
-	// You should only use this when depending on other mods because
-	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
-	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
-	// for more information about repositories.
+	mavenCentral()
 }
 
 loom {
-	splitEnvironmentSourceSets()
-
 	mods {
 		"mc_qq_mod" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
 		}
 	}
 }
@@ -29,6 +22,10 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	// SQLite JDBC 驱动。include(...) 会把它作为 jar-in-jar 打包进模组 jar,
+	// 服务器端无需额外安装任何东西。
+	include(implementation("org.xerial:sqlite-jdbc:${project.sqlite_jdbc_version}"))
 }
 
 processResources {
