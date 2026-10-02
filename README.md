@@ -5,7 +5,7 @@
 
 底层通过 [NapCat](https://napcat.napneko.icu/) 的正向 WebSocket(OneBot v11)与 QQ 通信。
 
-> ### 🤖 创作声明
+> ###  创作声明
 >
 > **本项目由 AI 创作(vibe coding)。**
 >
