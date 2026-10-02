@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "mc_qq_mod",
+	"version": "${version}",
+	"name": "mc_qq_mod",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/mc_qq_mod/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"mc_qq_mod.Mc_qq_mod"
+		],
+		"client": [
+			"mc_qq_mod.client.Mc_qq_modClient"
+		]
+	},
+	"mixins": [
+		"mc_qq_mod.mixins.json",
+		{
+			"config": "mc_qq_mod.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.5",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
