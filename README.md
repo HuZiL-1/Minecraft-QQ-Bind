@@ -68,8 +68,7 @@
     "codeLength": 6,
     "codeExpireSeconds": 600,
     "maxAttemptsPerMinute": 5,      // 每个 QQ 每分钟验证码尝试上限(防爆破)
-    "qqCanBindMultipleAccounts": false, // 一个 QQ 能否绑多个游戏账号
-    "accountCanBindMultipleQq": false,  // 一个游戏账号能否绑多个 QQ
+    "maxAccountsPerQq": 1,              // 一个 QQ 最多能绑几个游戏账号;0 = 不限
     "replyInGroup": true,           // 是否在群里回复绑定结果
     "adminPermissionLevel": 2       // /qqmod 指令所需权限等级(0-4)
   },
@@ -83,8 +82,10 @@
 }
 ```
 
-> 默认是「一对一」:一个 QQ 只能绑一个账号,一个账号只能绑一个 QQ。
-> 想放开,把 `qqCanBindMultipleAccounts` / `accountCanBindMultipleQq` 设为 `true`。
+> `maxAccountsPerQq` 默认是 `1`,即「一个 QQ 只能绑一个游戏账号」。
+> 改成 `N` 表示一个 QQ 最多绑 N 个账号(适合小号较多的玩家),`0` 表示不限。
+>
+> 反方向没有限制:同一个游戏账号可以绑定多个 QQ。
 
 ## 指令
 

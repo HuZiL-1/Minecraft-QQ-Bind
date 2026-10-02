@@ -57,22 +57,19 @@ public final class ModConfig {
 		public int codeExpireSeconds = 600;
 		/** 每个 QQ 每分钟最多尝试绑定次数,防止暴力猜码;<= 0 表示不限制。 */
 		public int maxAttemptsPerMinute = 5;
-		/** 一个 QQ 是否允许绑定多个游戏账号。 */
-		public boolean qqCanBindMultipleAccounts = false;
-		/** 一个游戏账号是否允许绑定多个 QQ。 */
-		public boolean accountCanBindMultipleQq = false;
+		/** 一个 QQ 最多能绑定的游戏账号数;<b>0 表示不限</b>。 */
+		public int maxAccountsPerQq = 1;
 		/** 对 QQ 消息是否回复绑定结果。 */
 		public boolean replyInGroup = true;
 		/** {@code /qqmod} 管理指令所需的最低权限等级(0-4)。 */
 		public int adminPermissionLevel = 2;
 	}
 
-	/** 文本模板,支持占位符 {@code {group}}、{@code {prefix}}、{@code {code}}、{@code {player}}、{@code {qq}}。 */
+	/** 文本模板,支持占位符 {@code {group}}、{@code {prefix}}、{@code {code}}、{@code {player}}、{@code {qq}}、{@code {max}}。 */
 	public static final class Messages {
 		public String kick = "你还没绑定QQ号,请到QQ群 {group} 发送 {prefix} {code} 完成绑定!";
 		public String bindSuccess = "绑定成功!QQ {qq} 已绑定玩家 {player}。";
-		public String bindQqTaken = "该 QQ 已绑定玩家 {player},如需更换请先联系管理员解绑。";
-		public String bindPlayerTaken = "玩家 {player} 已绑定其它 QQ,如需更换请先联系管理员解绑。";
+		public String bindQqLimitReached = "该 QQ 已绑定的账号数已达上限({max}),如需更换请先联系管理员解绑。";
 		public String bindCodeInvalid = "验证码无效或已过期,请重新进入服务器获取新的验证码。";
 		public String bindUsage = "用法:{prefix} {code} —— 验证码在未绑定被踢出服务器时显示。";
 		public String bindRateLimited = "尝试过于频繁,请稍后再试。";
@@ -134,6 +131,8 @@ public final class ModConfig {
 		if (binding.codeLength < 4) binding.codeLength = 4;
 		if (binding.codeLength > 16) binding.codeLength = 16;
 		if (binding.codeExpireSeconds < 30) binding.codeExpireSeconds = 30;
+		// 负数视为填写错误,回退到最严格的 1
+		if (binding.maxAccountsPerQq < 0) binding.maxAccountsPerQq = 1;
 		if (binding.adminPermissionLevel < 0) binding.adminPermissionLevel = 0;
 		if (binding.adminPermissionLevel > 4) binding.adminPermissionLevel = 4;
 		if (storage.file == null || storage.file.isBlank()) storage.file = "config/mc_qq_mod/bindings.db";

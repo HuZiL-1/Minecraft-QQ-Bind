@@ -80,12 +80,8 @@ public final class QqEventHandler {
 					"qq", qq,
 					"player", binding == null ? "?" : binding.playerName());
 			case CODE_INVALID -> config.messages.bindCodeInvalid;
-			case QQ_TAKEN -> ModConfig.render(config.messages.bindQqTaken,
-					"player", binding == null ? "?" : binding.playerName(),
-					"qq", binding == null ? "?" : binding.qq());
-			case PLAYER_TAKEN -> ModConfig.render(config.messages.bindPlayerTaken,
-					"player", binding == null ? "?" : binding.playerName(),
-					"qq", binding == null ? "?" : binding.qq());
+			case QQ_LIMIT_REACHED -> ModConfig.render(config.messages.bindQqLimitReached,
+					"max", config.binding.maxAccountsPerQq);
 		};
 	}
 

@@ -14,10 +14,8 @@ public record BindResult(Status status, Binding binding) {
 		SUCCESS,
 		/** 验证码不存在或已过期。 */
 		CODE_INVALID,
-		/** 该 QQ 已经绑定了另一个账号。 */
-		QQ_TAKEN,
-		/** 该玩家账号已经绑定了另一个 QQ。 */
-		PLAYER_TAKEN
+		/** 该 QQ 已绑定的账号数达到 {@code binding.maxAccountsPerQq} 上限。 */
+		QQ_LIMIT_REACHED
 	}
 
 	public static BindResult of(Status status) {

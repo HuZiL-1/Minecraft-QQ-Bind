@@ -106,20 +106,11 @@ public final class BindingService {
 					new Binding(pending.uuid(), pending.playerName(), qq, now));
 		}
 
-		if (!config.binding.qqCanBindMultipleAccounts) {
-			for (Binding existing : database.findBindingsByQq(qq)) {
-				if (!existing.uuid().equals(pending.uuid())) {
-					return new BindResult(BindResult.Status.QQ_TAKEN, existing);
-				}
-			}
-		}
-
-		if (!config.binding.accountCanBindMultipleQq) {
-			for (Binding existing : database.findBindingsByUuid(pending.uuid())) {
-				if (existing.qq() != qq) {
-					return new BindResult(BindResult.Status.PLAYER_TAKEN, existing);
-				}
-			}
+		// 该 QQ 已绑定的账号数上限(0 = 不限)。同一组合的重复提交已在上面的幂等分支返回,
+		// 因此这里直接按数量判断,不会把自己算进去。
+		int maxAccounts = config.binding.maxAccountsPerQq;
+		if (maxAccounts > 0 && database.findBindingsByQq(qq).size() >= maxAccounts) {
+			return BindResult.of(BindResult.Status.QQ_LIMIT_REACHED);
 		}
 
 		database.insertBinding(pending.uuid(), pending.playerName(), qq);
