@@ -5,6 +5,16 @@
 
 底层通过 [NapCat](https://napcat.napneko.icu/) 的正向 WebSocket(OneBot v11)与 QQ 通信。
 
+> ### 🤖 创作声明
+>
+> **本项目由 AI 创作(vibe coding)。**
+>
+> 全部代码由 AI([Claude Code](https://claude.com/claude-code))生成。人类负责提出需求、
+> 设定约束、提供测试环境并做最终验收——包括在真实服务端上跑通「未绑定被踢出 → 群内
+> 发码绑定 → 重新进服通行」的完整链路。
+>
+> 请在生产环境部署前自行审阅代码,尤其是鉴权、输入校验与数据存储部分。
+
 ## 工作原理
 
 1. 玩家进入服务器时,模组按 UUID 查询 SQLite 数据库。
