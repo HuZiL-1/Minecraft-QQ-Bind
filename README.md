@@ -68,7 +68,7 @@
     "codeLength": 6,
     "codeExpireSeconds": 600,
     "maxAttemptsPerMinute": 5,      // 每个 QQ 每分钟验证码尝试上限(防爆破)
-    "maxAccountsPerQq": 1,              // 一个 QQ 最多能绑几个游戏账号;0 = 不限
+    "maxAccountsPerQq": 1,          // 一个 QQ 最多能绑几个游戏账号;0 = 不限
     "replyInGroup": true,           // 是否在群里回复绑定结果
     "adminPermissionLevel": 2       // /qqmod 指令所需权限等级(0-4)
   },
